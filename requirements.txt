@@ -12,4 +12,5 @@ coreapi
 redis
 celery[redis]
 django-cachalot
-
+docker
+docker-compose

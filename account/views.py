@@ -5,8 +5,10 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin
+
+from mainapp.tasks import send_activation_mail_task
 from . import serializers
-from .send_mail import send_activation_code
+# from .send_mail import send_activation_mail
 
 User = get_user_model()
 
@@ -23,7 +25,7 @@ class AccountViewSet(ListModelMixin, GenericViewSet):
         user = serializer.save()
         if user:
             try:
-                send_activation_code(user.email, user.activation_code)
+                send_activation_mail_task.delay(user.email, user.activation_code)
             except Exception as i:
                 print(i, '****************')
                 return Response({'msg': 'Registered, but issues with email!',
