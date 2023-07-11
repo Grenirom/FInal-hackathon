@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = config('DEBUG')
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(' ')
 
@@ -171,3 +171,33 @@ SIMPLE_JWT = {
     "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
 }
+
+REDIS_HOST = 'redis'
+REDIS_PORT = '6379'
+
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+#                           redis://127.0.0.1:6379/0
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+# redis-cli - команда для запуска Radis
+# redis-server
+
+# celery -A mainapp worker -l INFO - запуск Celery
+
+#  1  git clone https://<репозиторий>
+   #  2  cd <dir project>
+   #  3  nano .env
+   #  4  sudo apt-get update
+   #  5  sudo apt install docker.io
+   #  6  sudo apt install docker-compose
+   #  7  sudo service docker start
+   #  8  sudo docker-compose up -d --build
+   #  9  sudo docker-compose start
+   # 10  sudo docker-compose up -d
+   # 11  sudo docker-compose exec web bash
+   # После 11 команды попадаем в контейнер Docker
+   # 12 python3 manage.py collectstatic
+   # 13 python3 manage.py createsuperuser
