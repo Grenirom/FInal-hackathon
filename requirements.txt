@@ -15,3 +15,4 @@ django-cachalot
 docker
 docker-compose
 coreapi
+django-cors-headers
