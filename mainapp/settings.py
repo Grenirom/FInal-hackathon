@@ -172,7 +172,7 @@ SIMPLE_JWT = {
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
 }
 
-REDIS_HOST = '34.125.146.65'
+REDIS_HOST = 'redis'
 REDIS_PORT = '6379'
 
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
@@ -186,3 +186,18 @@ CELERY_RESULT_SERIALIZER = 'json'
 # redis-server
 
 # celery -A mainapp worker -l INFO - запуск Celery
+
+#  1  git clone https://<репозиторий>
+   #  2  cd <dir project>
+   #  3  nano .env
+   #  4  sudo apt-get update
+   #  5  sudo apt install docker.io
+   #  6  sudo apt install docker-compose
+   #  7  sudo service docker start
+   #  8  sudo docker-compose up -d --build
+   #  9  sudo docker-compose start
+   # 10  sudo docker-compose up -d
+   # 11  sudo docker-compose exec web bash
+   # После 11 команды попадаем в контейнер Docker
+   # 12 python3 manage.py collectstatic
+   # 13 python3 manage.py createsuperuser
