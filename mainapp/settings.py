@@ -172,7 +172,7 @@ SIMPLE_JWT = {
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
 }
 
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = '34.125.146.65'
 REDIS_PORT = '6379'
 
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
@@ -185,4 +185,4 @@ CELERY_RESULT_SERIALIZER = 'json'
 # redis-cli - команда для запуска Radis
 # redis-server
 
-# celery -A hackathon worker -l INFO - запуск Celery
+# celery -A mainapp worker -l INFO - запуск Celery
