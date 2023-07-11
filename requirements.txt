@@ -10,7 +10,7 @@ djangorestframework-simplejwt
 django-rest-passwordreset
 coreapi
 redis
-celery[redis]
+celery
 django-cachalot
 docker
 docker-compose
