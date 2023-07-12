@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('category/', include('category.urls')),
+    path('news/', include('news.urls')),
 
 ]
 urlpatterns += static(
