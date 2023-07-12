@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     # my_apps
     'account',
+    'category',
 
 ]
 
@@ -175,14 +176,14 @@ SIMPLE_JWT = {
 
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8000",
+    "http://localhost:3000",
     "http://127.0.0.1:8000",
     "http://34.125.222.140"
 ]
 
 
-
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = 'redis'
+# REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
 
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
