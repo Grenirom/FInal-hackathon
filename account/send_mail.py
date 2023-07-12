@@ -1,7 +1,7 @@
 from django.core.mail import send_mail
 
-HOST = '34.125.222.14'
-# HOST = '127.0.0.1:8000'
+# HOST = '34.125.222.14'
+HOST = '127.0.0.1:8000'
 
 
 def send_activation_mail(user, code):

@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     # my_apps
     'account',
     'category',
-
+    'news',
 ]
 
 MIDDLEWARE = [
@@ -182,8 +182,8 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 
-REDIS_HOST = 'redis'
-# REDIS_HOST = '127.0.0.1'
+# REDIS_HOST = 'redis'
+REDIS_HOST = '127.0.0.1'
 REDIS_PORT = '6379'
 
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
