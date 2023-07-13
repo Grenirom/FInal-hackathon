@@ -29,7 +29,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('category/', include('category.urls')),
     path('news/', include('news.urls')),
-
+    path('characters/', include('characters.urls')),
 ]
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
