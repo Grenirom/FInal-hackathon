@@ -2,7 +2,6 @@ from datetime import timedelta
 from pathlib import Path
 from decouple import config
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
@@ -10,7 +9,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(' ')
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -34,7 +32,9 @@ INSTALLED_APPS = [
     'account',
     'category',
     'news',
+    'movies',
     'characters',
+
 ]
 
 MIDDLEWARE = [
@@ -78,7 +78,6 @@ DATABASES = {
     }
 }
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -94,7 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -102,7 +100,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
@@ -168,20 +165,17 @@ SIMPLE_JWT = {
 
     "JTI_CLAIM": "jti",
 
-
     "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
     "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
     "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
 }
 
-
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
     "http://34.125.222.140"
 ]
-
 
 # REDIS_HOST = 'redis'
 REDIS_HOST = '127.0.0.1'
@@ -201,6 +195,19 @@ CELERY_RESULT_SERIALIZER = 'json'
 # celery -A mainapp worker -l INFO - запуск Celery
 
 #  1  git clone https://<репозиторий>
+#  2  cd <dir project>
+#  3  nano .env
+#  4  sudo apt-get update
+#  5  sudo apt install docker.io
+#  6  sudo apt install docker-compose
+#  7  sudo service docker start
+#  8  sudo docker-compose up -d --build
+#  9  sudo docker-compose start
+# 10  sudo docker-compose up -d
+# 11  sudo docker-compose exec web bash
+# После 11 команды попадаем в контейнер Docker
+# 12 python3 manage.py collectstatic
+# 13 python3 manage.py createsuperuser
    #  2  cd <dir project>
    #  3  nano .env
    #  4  sudo apt-get update

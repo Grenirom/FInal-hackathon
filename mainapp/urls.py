@@ -29,6 +29,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('category/', include('category.urls')),
     path('news/', include('news.urls')),
+    path('movies/', include('movies.urls')),
     path('characters/', include('characters.urls')),
 ]
 urlpatterns += static(
