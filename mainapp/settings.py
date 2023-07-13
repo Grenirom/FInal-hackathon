@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'category',
     'news',
     'movies',
+    'characters',
 
 ]
 
@@ -187,6 +188,7 @@ CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
 # redis-cli - команда для запуска Radis
 # redis-server
 
@@ -206,3 +208,16 @@ CELERY_RESULT_SERIALIZER = 'json'
 # После 11 команды попадаем в контейнер Docker
 # 12 python3 manage.py collectstatic
 # 13 python3 manage.py createsuperuser
+   #  2  cd <dir project>
+   #  3  nano .env
+   #  4  sudo apt-get update
+   #  5  sudo apt install docker.io
+   #  6  sudo apt install docker-compose
+   #  7  sudo service docker start
+   #  8  sudo docker-compose up -d --build
+   #  9  sudo docker-compose start
+   # 10  sudo docker-compose up -d
+   # 11  sudo docker-compose exec web bash
+   # После 11 команды попадаем в контейнер Docker
+   # 12 python3 manage.py collectstatic
+   # 13 python3 manage.py createsuperuser
