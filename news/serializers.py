@@ -12,3 +12,17 @@ class NewCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = New
         fields = '__all__'
+
+
+class FavoriteSerializer(serializers.Serializer):
+    new = serializers.CharField()
+
+
+class CommentSerializer(serializers.Serializer):
+    user = serializers.EmailField()
+    comment = serializers.CharField()
+    new = serializers.CharField()
+
+
+# class LikeSerializer(serializers.Serializer):
+#     user
