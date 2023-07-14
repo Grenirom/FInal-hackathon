@@ -35,7 +35,7 @@ class ComicsListingView(ListAPIView):
 class ComicsDetailView(RetrieveAPIView):
     queryset = Comics.objects.all()
     serializer_class = serializers.ComicsSerializers
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [AllowAny,]
 
 class ComicsUpdateView(UpdateAPIView):
     queryset = Comics.objects.all()

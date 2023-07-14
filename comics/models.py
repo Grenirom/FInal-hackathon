@@ -16,7 +16,6 @@ class Comics(models.Model):
     price = models.DecimalField(max_digits=22, decimal_places=2)
     amount_of_pages = models.PositiveIntegerField()
     category = models.ForeignKey(Category, on_delete=models.RESTRICT, related_name="comics")
-    average_rating = models.IntegerField()
 
     def __str__(self):
         return self.name

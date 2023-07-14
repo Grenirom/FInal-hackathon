@@ -6,7 +6,7 @@ from category.models import Category
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    releaseDate = models.DateField()
+    release_date = models.DateField()
     director = models.CharField(max_length=100)
     actors = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
