@@ -1,13 +1,14 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
 from . import views
 
-app_name = 'movies'
+# router = DefaultRouter()
+# router.register('', views.OrderViewSet)
 
 urlpatterns = [
-    path('orders/', views.order_list, name='order_list'),
-    path('orders/create/', views.order_create, name='order_create'),
-    path('orders/<int:pk>/', views.order_detail, name='order_detail'),
-    path('orders/<int:pk>/update/', views.order_update, name='order_update'),
-    path('orders/<int:pk>/delete/', views.order_delete, name='order_delete'),
+    path('confirm/<uuid:confirm_code>/', views.OrderConfirmView.as_view()),
+    path('list-create/', views.OrderView.as_view()),
+    path('delete/<int:pk>/', views.OrderDeleteFromUserView.as_view()),
+
 ]
