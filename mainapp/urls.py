@@ -31,6 +31,8 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('movies/', include('movies.urls')),
     path('characters/', include('characters.urls')),
+    path('orders/', include('orders.urls')),
+    path('comics/', include('comics.urls'))
 ]
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
