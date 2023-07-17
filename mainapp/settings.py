@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'characters',
     'orders',
     'comics',
-    'orders',
     'parsing',
 
 ]
@@ -203,7 +202,7 @@ CORS_ALLOWED_ORIGINS = [
 
 
 # REDIS_HOST = 'redis'
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = config('REDIS_HOST')
 REDIS_PORT = '6379'
 
 CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
