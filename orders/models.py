@@ -1,41 +1,26 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save, pre_save
-from django.dispatch import receiver
+from django.db import models
 from comics.models import Comics
 
-# Create your models here.
 User = get_user_model()
+
 STATUS_CHOICES = (
-    ("open", "открыт"),
-    ("in_process", "в обработке"),
-    ("closed", "Закрыт"),
+    ('open', 'Открыт'),
+    ('in_process', 'В обработке'),
+    ('closed', 'Закрыт'),
 )
 
 
-class OrderItem(models.Model):
-    order = models.ForeignKey('order', related_name='items', on_delete=models.CASCADE)
-    product = models.ForeignKey(Comics, related_name='items', on_delete=models.CASCADE)
-    quantity = models.PositiveSmallIntegerField(default=1)
-
-
 class Order(models.Model):
-    user = models.ForeignKey(User, related_name='order', on_delete=models.CASCADE)
-    product = models.ManyToManyField(Comics, through=OrderItem)
-    address = models.CharField(max_length=255)
-    number = models.CharField(max_length=50)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-    total_sum = models.DecimalField(max_digits=9, decimal_places=2, blank=True)
+    user = models.ForeignKey(User, related_name='orders', on_delete=models.CASCADE)
+    comics = models.ForeignKey(Comics, related_name='orders', on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=1)
+    order_confirm = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    confirm_code = models.CharField(max_length=222, default='', null=True, blank=True)
 
-    def __str__(self):
-        return f'{self.id} - {self.user}'
+    def create_confirm_code(self):
+        from uuid import uuid4
+        code = str(uuid4())
+        self.confirm_code = code
 
-@receiver(pre_save,sender = Order)
-def order_pre_save(sender,instance,*args,**kwargs):
-    print("Сигнал перед сохранением ************************************************")
-@receiver(post_save,sender=Order)
-def order_post_save(sender, instance, *args,**kwargs):
-    print(f'instance - {instance}')
-    print("Сигнал здесь перед сохранением ********************************************************")

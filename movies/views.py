@@ -24,15 +24,14 @@ class MovieViewSet(ModelViewSet):
     filterset_fields = ('category', 'price')
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ('list', 'retrieve'):
             return serializers.MovieListSerializer
-        elif self.action in ('create', 'update', 'partial_update'):
+        elif self.action in ('create', 'update', 'partial_update', 'destroy'):
             return serializers.MovieCreateSerializer
         return serializers.MovieDetailSerializer
 
     def get_permissions(self):
-        if self.action in ('update', 'delete', 'create'):
+        if self.action in ('update', 'partial_update', 'destroy', 'create'):
+            return [permissions.IsAdminUser(), ]
+        elif self.action in ('list', 'retrieve'):
             return [permissions.AllowAny(), ]
-        return [permissions.AllowAny(), ]
-
-
