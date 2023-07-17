@@ -23,3 +23,4 @@ class Order(models.Model):
         from uuid import uuid4
         code = str(uuid4())
         self.confirm_code = code
+

@@ -24,9 +24,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'django_filters',
     'drf_yasg',
-    'corsheaders',
     # 'django.contrib.staticfiles',
     'django_rest_passwordreset',
+    'corsheaders',
 
     # my_apps
     'account',
@@ -34,15 +34,17 @@ INSTALLED_APPS = [
     'news',
     'movies',
     'characters',
+    'orders',
     'comics',
-    'orders'
+    'orders',
+    'parsing',
 
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -192,11 +194,13 @@ SIMPLE_JWT = {
     "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
 }
 
-CORS_ORIGIN_WHITELIST = [
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
-    "http://34.125.222.140"
 ]
+
 
 # REDIS_HOST = 'redis'
 REDIS_HOST = '127.0.0.1'
@@ -229,16 +233,16 @@ CELERY_RESULT_SERIALIZER = 'json'
 # После 11 команды попадаем в контейнер Docker
 # 12 python3 manage.py collectstatic
 # 13 python3 manage.py createsuperuser
-   #  2  cd <dir project>
-   #  3  nano .env
-   #  4  sudo apt-get update
-   #  5  sudo apt install docker.io
-   #  6  sudo apt install docker-compose
-   #  7  sudo service docker start
-   #  8  sudo docker-compose up -d --build
-   #  9  sudo docker-compose start
-   # 10  sudo docker-compose up -d
-   # 11  sudo docker-compose exec web bash
-   # После 11 команды попадаем в контейнер Docker
-   # 12 python3 manage.py collectstatic
-   # 13 python3 manage.py createsuperuser
+#  2  cd <dir project>
+#  3  nano .env
+#  4  sudo apt-get update
+#  5  sudo apt install docker.io
+#  6  sudo apt install docker-compose
+#  7  sudo service docker start
+#  8  sudo docker-compose up -d --build
+#  9  sudo docker-compose start
+# 10  sudo docker-compose up -d
+# 11  sudo docker-compose exec web bash
+# После 11 команды попадаем в контейнер Docker
+# 12 python3 manage.py collectstatic
+# 13 python3 manage.py createsuperuser
