@@ -16,3 +16,7 @@ docker
 docker-compose
 coreapi
 django-cors-headers
+lxml
+beautifulsoup4
+requests
+aiohttp

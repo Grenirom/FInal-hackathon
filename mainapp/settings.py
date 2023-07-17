@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'orders',
     'comics',
     'orders',
+    'parsing',
+
 ]
 
 MIDDLEWARE = [

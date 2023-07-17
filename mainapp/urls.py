@@ -1,12 +1,11 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from django.urls import re_path
-from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
+from parsing.views import ParsingListAPIView
 from mainapp import settings
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -31,6 +30,8 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('movies/', include('movies.urls')),
     path('characters/', include('characters.urls')),
+    path('comics/', include('comics.urls')),
+    path('parsing/',ParsingListAPIView.as_view()),
     path('orders/', include('orders.urls')),
     path('comics/', include('comics.urls'))
 ]

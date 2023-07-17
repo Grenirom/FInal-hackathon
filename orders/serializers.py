@@ -1,8 +1,7 @@
-from rest_framework import serializers
-
 from comics.models import Comics
 from mainapp.tasks import send_order_confirm_email
 from .models import Order
+from rest_framework import serializers
 
 
 class OrderSerializer(serializers.ModelSerializer):
