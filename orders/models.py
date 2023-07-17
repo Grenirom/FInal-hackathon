@@ -1,28 +1,41 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save, pre_save
+from django.dispatch import receiver
+from comics.models import Comics
 
-from movies.models import Movie
-
-
+# Create your models here.
 User = get_user_model()
-
-
-class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    movies = models.ManyToManyField(Movie, through='OrderItem')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    is_completed = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"Order #{self.pk} - User: {self.user.get_full_name()}"
+STATUS_CHOICES = (
+    ("open", "открыт"),
+    ("in_process", "в обработке"),
+    ("closed", "Закрыт"),
+)
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
+    order = models.ForeignKey('order', related_name='items', on_delete=models.CASCADE)
+    product = models.ForeignKey(Comics, related_name='items', on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField(default=1)
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, related_name='order', on_delete=models.CASCADE)
+    product = models.ManyToManyField(Comics, through=OrderItem)
+    address = models.CharField(max_length=255)
+    number = models.CharField(max_length=50)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    total_sum = models.DecimalField(max_digits=9, decimal_places=2, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Order Item - Order #{self.order.pk}, Movie: {self.movie.title}, Quantity: {self.quantity}"
+        return f'{self.id} - {self.user}'
+
+@receiver(pre_save,sender = Order)
+def order_pre_save(sender,instance,*args,**kwargs):
+    print("Сигнал перед сохранением ************************************************")
+@receiver(post_save,sender=Order)
+def order_post_save(sender, instance, *args,**kwargs):
+    print(f'instance - {instance}')
+    print("Сигнал здесь перед сохранением ********************************************************")

@@ -5,8 +5,9 @@ from django.urls import re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-
+from parsing.views import ParsingListAPIView
 from mainapp import settings
+from orders.views import CreateOrderView
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -31,6 +32,9 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('movies/', include('movies.urls')),
     path('characters/', include('characters.urls')),
+    path('comics/', include('comics.urls')),
+    path('orders/', CreateOrderView.as_view()),
+    path('parsing/',ParsingListAPIView.as_view()),
 ]
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT

@@ -1,24 +1,19 @@
-from rest_framework import generics
+from rest_framework.response import Response
 
-from .models import Order, OrderItem
-from .serializers import OrderSerializer, OrderItemSerializer
-
-
-class OrderListCreateView(generics.ListCreateAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+from django.shortcuts import render
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.response import Response
+from . import serializers
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 
-class OrderRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Order.objects.all()
-    serializer_class = OrderSerializer
+# Create your views here.
+class CreateOrderView(ListCreateAPIView):
+    serializer_class =serializers.OrderSerializer
+    permission_classes = [IsAuthenticated,]
 
-
-class OrderItemCreateView(generics.CreateAPIView):
-    queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
-
-
-class OrderItemRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = OrderItem.objects.all()
-    serializer_class = OrderItemSerializer
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        order = user.order.all()
+        serializer = serializers.OrderSerializer(order,many=True)
+        return Response(serializer.data, status=200)
