@@ -9,7 +9,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        exclude = ('order_confirm', 'confirm_code')
+        fields = ('comics', 'count', 'order_confirm', 'confirm_code')
 
     def create(self, validated_data):
         order = Order.objects.create(**validated_data)
