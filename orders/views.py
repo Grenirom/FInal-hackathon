@@ -1,8 +1,7 @@
 from rest_framework import status, generics
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import ModelViewSet
 from .models import Order
 from .serializers import OrderSerializer
 
@@ -26,7 +25,6 @@ class OrderDeleteFromUserView(generics.DestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated, ]
-
 
 
 class OrderConfirmView(APIView):
