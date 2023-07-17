@@ -9,16 +9,16 @@ from drf_yasg import openapi
 from mainapp import settings
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Snippets API",
-      default_version='v1',
-      description="Test description",
-      # terms_of_service="https://www.google.com/policies/terms/",
-      # contact=openapi.Contact(email="contact@snippets.local"),
-      # license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   # permission_classes=[permissions.AllowAny],
+    openapi.Info(
+        title="Snippets API",
+        default_version='v1',
+        description="Test description",
+        # terms_of_service="https://www.google.com/policies/terms/",
+        # contact=openapi.Contact(email="contact@snippets.local"),
+        # license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    # permission_classes=[permissions.AllowAny],
 )
 
 urlpatterns = [
@@ -31,6 +31,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('movies/', include('movies.urls')),
     path('characters/', include('characters.urls')),
+    # path('orders/', include('orders.urls')),
 ]
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
