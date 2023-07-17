@@ -1,6 +1,6 @@
 from django.core.mail import send_mail
 
-# HOST = '34.125.222.14'
+# HOST = '34.125.222.140'
 HOST = '127.0.0.1:8000'
 # HOST = 'localhost:3000'
 
