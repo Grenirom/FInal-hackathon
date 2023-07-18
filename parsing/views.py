@@ -1,16 +1,10 @@
 import json
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView
-from django.shortcuts import render
 import time
-from . import serializers
 from bs4 import BeautifulSoup as bs
 from json import dumps
 import requests
-from multiprocessing import Pool
-
-from parsing.models import ParsingModel
 from .serializers import ParsingSerializer
 
 link_main = 'https://www.film.ru/compilation/vselennaya-marvel'

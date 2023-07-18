@@ -36,6 +36,12 @@ services:
     depends_on:
       - db
 
+  bot:
+    build: .
+    command: python3 bot.py
+    depends_on:
+      - db
+
 
   redis:
     image: redis

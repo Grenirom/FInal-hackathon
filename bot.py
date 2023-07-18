@@ -1,110 +1,14 @@
-# import telebot
-# import os
-# import django
-#
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
-# django.setup()
-# from django.conf import settings
-# from django.core.wsgi import get_wsgi_application
-# from category.models import Category
-# import django
-# import os
-# import sys
-# from datetime import timedelta
-# from pathlib import Path
-# from decouple import config
-#
-# TOKEN = '5716880333:AAFffbdc3qk0vFei3D037eAJwOjNbjYLQVs'
-#
-# BASE_DIR = Path(__file__).resolve().parent.parent
-# # DJANGO_SETTINGS_MODULE
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
-# os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-#
-# django.setup()
-#
-# bot = telebot.TeleBot(TOKEN)
-#
-#
-# @bot.message_handler(commands=['start'])
-# def start(message):
-#     categories = Category.objects.all()
-#     category_names = [category.title for category in categories]
-#     print(category_names)
-#     message_text = '\n'.join(category_names)
-#     bot.send_message(message.chat.id, message_text)
-#
-#
-# application = get_wsgi_application()
-#
-# if __name__ == '__main__':
-#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
-#     os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-#     from django.core.management import execute_from_command_line
-#     bot.polling()
-#
-# _____________________________________________________________________________________________-
-# import telebot
-# import os
-# import django
-#
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
-# django.setup()
-# from django.conf import settings
-# from django.core.wsgi import get_wsgi_application
-# from category.models import Category
-# import django
-# import os
-# import sys
-# from datetime import timedelta
-# from pathlib import Path
-# from decouple import config
-#
-# TOKEN = '5716880333:AAFffbdc3qk0vFei3D037eAJwOjNbjYLQVs'
-#
-# BASE_DIR = Path(__file__).resolve().parent.parent
-# # DJANGO_SETTINGS_MODULE
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
-# os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-#
-# django.setup()
-#
-# bot = telebot.TeleBot(TOKEN)
-#
-#
-# @bot.message_handler(commands=['start'])
-# def start(message):
-#     categories = Category.objects.all()
-#     category_names = [category.slug for category in categories]
-#     print(category_names)
-#     message_text = '\n'.join(category_names)
-#     bot.send_message(message.chat.id, message_text)
-#
-#
-# application = get_wsgi_application()
-#
-# if __name__ == '__main__':
-#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
-#     os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-#     from django.core.management import execute_from_command_line
-#     bot.polling()
-#
-
 import telebot
 import os
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
 django.setup()
-from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 from category.models import Category
 import django
 import os
-import sys
-from datetime import timedelta
 from pathlib import Path
-from decouple import config
 from telebot import types
 from comics.models import Comics
 from news.models import New

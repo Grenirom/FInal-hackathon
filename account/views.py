@@ -6,10 +6,10 @@ from rest_framework.response import Response
 from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin
-
+from rest_framework import generics
 from mainapp.tasks import send_activation_mail_task
 from . import serializers
-# from .send_mail import send_activation_mail
+
 
 User = get_user_model()
 
@@ -48,6 +48,12 @@ class AccountViewSet(ListModelMixin, GenericViewSet):
 
 class Login(TokenObtainPairView):
     permission_classes = (permissions.AllowAny, )
+
+
+class AccountUpdateView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
+    permission_classes = [permissions.IsAuthenticated, ]
 
 
 class Refresh(TokenRefreshView):

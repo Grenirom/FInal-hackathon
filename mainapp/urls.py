@@ -33,7 +33,7 @@ urlpatterns = [
     path('comics/', include('comics.urls')),
     path('parsing/',ParsingListAPIView.as_view()),
     path('orders/', include('orders.urls')),
-    path('comics/', include('comics.urls'))
+    path('comics/', include('comics.urls')),
 ]
 urlpatterns += static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
