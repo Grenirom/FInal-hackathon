@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'characters',
     'orders',
     'comics',
+    'orders',
     'parsing',
 
 ]
