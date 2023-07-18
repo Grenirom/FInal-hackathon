@@ -1,4 +1,3 @@
-import generics as generics
 from django.contrib.auth import get_user_model
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.viewsets import GenericViewSet
