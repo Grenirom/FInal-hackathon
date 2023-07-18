@@ -17,3 +17,7 @@ docker-compose
 coreapi
 django-cors-headers
 pyTelegramBotAPI
+lxml
+beautifulsoup4
+requests
+aiohttp

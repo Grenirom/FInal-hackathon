@@ -1,10 +1,8 @@
 from django.db import models
 
-from account.models import CustomUser
 from category.models import Category
 
 
-# Create your models here.
 class Comics(models.Model):
     STATUS = (
         ('in_stock', 'В наличии'),
@@ -18,6 +16,7 @@ class Comics(models.Model):
     price = models.DecimalField(max_digits=22, decimal_places=2)
     amount_of_pages = models.PositiveIntegerField()
     category = models.ForeignKey(Category, on_delete=models.RESTRICT, related_name="comics")
+    stock = models.CharField(choices=STATUS, max_length=50)
     amount = models.PositiveIntegerField(default=10)
 
     def __str__(self):

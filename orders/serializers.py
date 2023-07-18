@@ -1,8 +1,7 @@
-from rest_framework import serializers
-
 from comics.models import Comics
 from mainapp.tasks import send_order_confirm_email
 from .models import Order
+from rest_framework import serializers
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -10,7 +9,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        exclude = ('order_confirm', 'confirm_code')
+        fields = ('comics', 'count', 'user', 'order_confirm', 'confirm_code')
 
     def create(self, validated_data):
         order = Order.objects.create(**validated_data)
