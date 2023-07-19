@@ -245,3 +245,22 @@ CELERY_RESULT_SERIALIZER = 'json'
 # После 11 команды попадаем в контейнер Docker
 # 12 python3 manage.py collectstatic
 # 13 python3 manage.py createsuperuser
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "information.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "INFO",
+            "propagate": True,
+        },
+    },
+}
