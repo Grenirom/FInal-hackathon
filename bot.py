@@ -72,9 +72,9 @@ def handle_callback(call):
 
 application = get_wsgi_application()
 
-if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
-    os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-    from django.core.management import execute_from_command_line
+# if __name__ == '__main__':
+#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mainapp.settings')
+#     os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+#     from django.core.management import execute_from_command_line
 
-    bot.polling()
+bot.polling()

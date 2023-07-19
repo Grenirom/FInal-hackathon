@@ -9,5 +9,6 @@ router.register('', views.NewViewSet)
 urlpatterns = [
     # path('list-create/', views.NewCreateListView.as_view()),
     # path('retr-upd-del/<int:pk>/', views.NewRetrieveUpdateDeleteView.as_view()),
+    path('create/', views.NewCreateView.as_view()),
     path('', include(router.urls)),
 ]

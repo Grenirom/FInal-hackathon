@@ -10,10 +10,10 @@ from . import utils
 #         fields = ('id', 'image', 'category', 'title')
 #
 #
-# class NewCreateSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = New
-#         fields = '__all__'
+class NewCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = New
+        fields = '__all__'
 
 
 class FavoriteSerializer(serializers.Serializer):
@@ -60,3 +60,4 @@ class NewSerializer(serializers.ModelSerializer):
         repr['is_commented'] = utils.is_commented(user=user, obj=instance)
         repr['is_favorite'] = utils.is_favorite(user=user, obj=instance)
         return repr
+
